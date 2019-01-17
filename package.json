@@ -1,0 +1,40 @@
+{
+    "name": "osrs-json-api",
+    "version": "0.0.1",
+    "description": "Simple and easy to use Old School RuneScape API wrapper (hiscores and grand exchange) that returns JSON friendly objects",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Judaxx/osrs-json-api.git"
+    },
+    "keywords": [
+        "osrs",
+        "oldschool",
+        "runescape",
+        "hiscores",
+        "grandexchange",
+        "grand",
+        "exchange",
+        "ge",
+        "stats",
+        "skills"
+    ],
+    "author": "Gabriel Fiori | Judaxx",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Judaxx/osrs-json-api/issues"
+    },
+    "homepage": "https://github.com/Judaxx/osrs-json-api#readme",
+    "devDependencies": {
+        "eslint": "^5.12.0",
+        "eslint-config-airbnb-base": "^13.1.0",
+        "eslint-plugin-import": "^2.14.0",
+        "prettier-eslint": "^8.8.2"
+    },
+    "dependencies": {
+        "axios": "^0.18.0"
+    }
+}
