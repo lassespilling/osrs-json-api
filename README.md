@@ -14,6 +14,16 @@ $ npm install osrs-json-api
 
 `getPlayer({rsn, [gamemode]})` Retrieves a player's hiscores stats
 
+-   `rsn` {`String`} Player's RuneScape Name
+-   `gamemode` {`String`} Player's game mode
+    -   `'main'`: Regular **(Default)**
+    -   `'iron'` : Ironman
+    -   `'uim'` : Ultimate Ironman
+    -   `'hcim'` : Hardcore Ironman
+    -   `'dmm'` : Deadman Mode
+    -   `'sdmm'` : Seasonal Deadman Mode
+    -   `'dmmt'` : Deadman Mode Tournament
+
 Example
 
 ```javascript
