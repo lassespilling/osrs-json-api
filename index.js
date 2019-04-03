@@ -1,2 +1,2 @@
-exports.hiscores = require('./lib/hiscores');
-exports.ge = require('./lib/ge');
+exports.hiscores = require('./src/hiscores');
+exports.ge = require('./src/ge');

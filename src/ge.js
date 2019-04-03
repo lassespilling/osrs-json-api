@@ -7,7 +7,7 @@ const { GE_URLS } = require('./constants');
  * @access private
  * @param {number} id Item's id
  */
-const fetchItem = id => new Promise((resolve, reject) => {
+const _fetchItem = id => new Promise((resolve, reject) => {
   axios
     .get(`${GE_URLS.detail}?item=${id}`)
     .then(res => resolve(res.data))
@@ -15,7 +15,7 @@ const fetchItem = id => new Promise((resolve, reject) => {
       if (
         (err.response.data && err.response.data.includes('not found'))
           || (err.data && err.data.includes('not found'))
-      ) reject(new Error(`There are no items for this id! (${id})`));
+      ) reject(new Error('No items were found for the specified id'));
 
       reject(err);
     });
@@ -28,9 +28,9 @@ const fetchItem = id => new Promise((resolve, reject) => {
  * @param {number} id Item's id
  */
 const getItem = async (id) => {
-  if (typeof id !== 'number' || id <= 0) throw new Error('Invalid item ID!');
+  if (typeof id !== 'number' || id <= 0) throw new Error('Invalid item id');
 
-  return fetchItem(id);
+  return _fetchItem(id);
 };
 
 /**
@@ -39,7 +39,7 @@ const getItem = async (id) => {
  * @access private
  * @param {number} id Item's id
  */
-const fetchGraph = id => new Promise((resolve, reject) => {
+const _fetchGraph = id => new Promise((resolve, reject) => {
   axios
     .get(`${GE_URLS.graph}/${id}.json`)
     .then(res => resolve(res.data))
@@ -47,7 +47,7 @@ const fetchGraph = id => new Promise((resolve, reject) => {
       if (
         (err.response.data && err.response.data.includes('not found'))
           || (err.data && err.data.includes('not found'))
-      ) reject(new Error(`There are no items for this id! (${id})`));
+      ) reject(new Error('No items were found for the specified id'));
 
       reject(err);
     });
@@ -59,10 +59,10 @@ const fetchGraph = id => new Promise((resolve, reject) => {
  * @access public
  * @param {number} id Item's id
  */
-const getGraph = async (id) => {
-  if (typeof id !== 'number' || id <= 0) throw new Error('Invalid item ID!');
+const getGraph = (id) => {
+  if (typeof id !== 'number' || id <= 0) throw new Error('Invalid item id');
 
-  return fetchGraph(id);
+  return _fetchGraph(id);
 };
 
 module.exports = { getItem, getGraph };

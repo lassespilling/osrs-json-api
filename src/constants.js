@@ -1,11 +1,13 @@
+const BASE_HISCORES_URL = 'https://services.runescape.com/m=hiscore_oldschool';
+
 const HISCORES_URLS = {
-  main: 'http://services.runescape.com/m=hiscore_oldschool',
-  iron: 'http://services.runescape.com/m=hiscore_oldschool_ironman',
-  uim: 'http://services.runescape.com/m=hiscore_oldschool_ultimate',
-  hcim: 'http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman',
-  dmm: 'http://services.runescape.com/m=hiscore_oldschool_deadman',
-  sdmm: 'http://services.runescape.com/m=hiscore_oldschool_seasonal',
-  dmmt: 'http://services.runescape.com/m=hiscore_oldschool_tournament',
+  main: BASE_HISCORES_URL,
+  iron: `${BASE_HISCORES_URL}_ironman`,
+  uim: `${BASE_HISCORES_URL}_ultimate`,
+  hcim: `${BASE_HISCORES_URL}_hardcore_ironman`,
+  dmm: `${BASE_HISCORES_URL}_deadman`,
+  sdmm: `${BASE_HISCORES_URL}_seasonal`,
+  dmmt: `${BASE_HISCORES_URL}_tournament`,
 };
 
 const GE_URLS = {
