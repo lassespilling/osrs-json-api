@@ -42,9 +42,9 @@ const STATS = {
     'hunter',
     'construction',
   ],
-  clues: ['all', 'easy', 'medium', 'hard', 'elite', 'master'],
   bh: ['hunter', 'rogue'],
   lms: {},
+  clues: ['all', 'beginner', 'easy', 'medium', 'hard', 'elite', 'master'],
 };
 
 module.exports = {

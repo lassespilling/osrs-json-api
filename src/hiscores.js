@@ -65,7 +65,7 @@ const _parseSkills = (statsArray) => {
  * @param {Object[]} statsArray Array obtained from csvToArray()
  */
 const _parseClues = (statsArray) => {
-  const stats = statsArray.slice(26, 32);
+  const stats = statsArray.slice(27, 34);
 
   const clues = {};
 
@@ -107,7 +107,7 @@ const _parseBH = (statsArray) => {
  * @param {Object[]} stats Array obtained from csvToArray()
  */
 const _parseLMS = (stats) => {
-  const lms = stats.pop();
+  const lms = stats[26];
 
   return { rank: lms[0], score: lms[1] };
 };
@@ -124,9 +124,9 @@ const _parseStats = (stats) => {
   const player = {};
 
   player.skills = _parseSkills(stats);
-  player.clues = _parseClues(stats);
   player.bh = _parseBH(stats);
   player.lms = _parseLMS(stats);
+  player.clues = _parseClues(stats);
 
   return player;
 };
