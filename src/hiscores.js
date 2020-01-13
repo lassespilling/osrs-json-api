@@ -113,6 +113,27 @@ const _parseLMS = (stats) => {
 };
 
 /**
+ * Returns Boss kills stats object
+ *
+ * @access private
+ * @param {Object[]} stats Array obtained from csvToArray()
+ */
+const _parseBosses = (statsArray) => {
+  const stats = statsArray.slice(35, 78);
+
+  const bosses = {};
+
+  STATS.bosses.forEach((boss, i) => {
+    bosses[boss] = {
+      rank: stats[i][0],
+      score: stats[i][1],
+    };
+  });
+
+  return bosses;
+};
+
+/**
  * Returns a JSON friendly object with all of the player's hiscores stats
  *
  * @access private
@@ -127,6 +148,7 @@ const _parseStats = (stats) => {
   player.bh = _parseBH(stats);
   player.lms = _parseLMS(stats);
   player.clues = _parseClues(stats);
+  player.bosses = _parseBosses(stats);
 
   return player;
 };
