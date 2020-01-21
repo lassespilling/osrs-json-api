@@ -25,7 +25,14 @@ const _csvToArray = (csv) => {
 const _fetchPlayerCSV = (rsn, gamemode) => new Promise((resolve, reject) => {
   axios
     .get(`${HISCORES_URLS[gamemode]}/index_lite.ws?player=${rsn}`)
-    .then(res => resolve(res.data))
+    .then((res) => {
+      const regex = /[^0-9-,\s]/gm;
+      const found = regex.exec(res.data);
+      if (found !== null) {
+        reject(new Error('OSRS API appears to be down.'));
+      }
+      resolve(res.data);
+    })
     .catch((err) => {
       if (
         (err.response.data && err.response.data.includes('not found'))
