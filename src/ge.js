@@ -12,6 +12,9 @@ const _fetchItem = id => new Promise((resolve, reject) => {
     .get(`${GE_URLS.detail}?item=${id}`)
     .then(res => resolve(res.data))
     .catch((err) => {
+      if (!err.response) {
+        reject(new Error('An unknown networking error occurred.'));
+      }
       if (
         (err.response.data && err.response.data.includes('not found'))
           || (err.data && err.data.includes('not found'))
@@ -44,6 +47,9 @@ const _fetchGraph = id => new Promise((resolve, reject) => {
     .get(`${GE_URLS.graph}/${id}.json`)
     .then(res => resolve(res.data))
     .catch((err) => {
+      if (!err.response) {
+        reject(new Error('An unknown networking error occurred.'));
+      }
       if (
         (err.response.data && err.response.data.includes('not found'))
           || (err.data && err.data.includes('not found'))
