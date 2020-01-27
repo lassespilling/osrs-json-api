@@ -28,9 +28,11 @@ const _fetchPlayerCSV = (rsn, gamemode) => new Promise((resolve, reject) => {
     .then((res) => {
       const regex = /[^0-9-,\s]/gm;
       const found = regex.exec(res.data);
-      if (found !== null) {
+
+      if (found) {
         reject(new Error('OSRS API appears to be down.'));
       }
+
       resolve(res.data);
     })
     .catch((err) => {

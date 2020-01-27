@@ -10,7 +10,16 @@ const { GE_URLS } = require('./constants');
 const _fetchItem = id => new Promise((resolve, reject) => {
   axios
     .get(`${GE_URLS.detail}?item=${id}`)
-    .then(res => resolve(res.data))
+    .then((res) => {
+      const regex = /[^0-9-,\s]/gm;
+      const found = regex.exec(res.data);
+
+      if (found) {
+        reject(new Error('OSRS API appears to be down.'));
+      }
+
+      resolve(res.data);
+    })
     .catch((err) => {
       if (!err.response) {
         reject(new Error('An unknown networking error occurred.'));
