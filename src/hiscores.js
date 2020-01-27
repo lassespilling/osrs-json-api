@@ -34,7 +34,7 @@ const _fetchPlayerCSV = (rsn, gamemode) => new Promise((resolve, reject) => {
       resolve(res.data);
     })
     .catch((err) => {
-      if (err.response === undefined) {
+      if (!err.response) {
         reject(new Error('An unknown networking error occurred.'));
       }
       if (
