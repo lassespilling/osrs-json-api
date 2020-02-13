@@ -131,7 +131,7 @@ const _parseLMS = (stats) => {
  * @param {Object[]} stats Array obtained from csvToArray()
  */
 const _parseBosses = (statsArray) => {
-  const stats = statsArray.slice(35, 78);
+  const stats = statsArray.slice(35, 79);
 
   const bosses = {};
 
