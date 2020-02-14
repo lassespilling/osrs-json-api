@@ -73,6 +73,7 @@ const STATS = {
     'Kree\'Arra',
     'K\'ril Tsutsaroth',
     'Mimic',
+    'Nightmare',
     'Obor',
     'Sarachnis',
     'Scorpia',
