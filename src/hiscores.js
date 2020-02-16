@@ -31,20 +31,18 @@ const _fetchPlayerCSV = (rsn, gamemode) => new Promise((resolve, reject) => {
 
       if (found) {
         reject(new Error('OSRS API appears to be down.'));
+        return;
       }
 
       resolve(res.data);
     })
     .catch((err) => {
-      if (!err.response) {
-        reject(new Error('An unknown networking error occurred.'));
-      }
-      if (
+      if (!err.response) reject(new Error('An unknown networking error occurred.'));
+      else if (
         (err.response.data && err.response.data.includes('not found'))
           || (err.data && err.data.includes('not found'))
-      ) reject(new Error('Player not found! Check RSN or game mode.'));
-
-      reject(err);
+      ) reject(new Error('No items were found for the specified id'));
+      else reject(err);
     });
 });
 
