@@ -16,20 +16,18 @@ const _fetchItem = (id, config) => new Promise((resolve, reject) => {
 
       if (found) {
         reject(new Error('OSRS API appears to be down.'));
+        return;
       }
 
       resolve(res.data);
     })
     .catch((err) => {
-      if (!err.response) {
-        reject(new Error('An unknown networking error occurred.'));
-      }
-      if (
+      if (!err.response) reject(new Error('An unknown networking error occurred.'));
+      else if (
         (err.response.data && err.response.data.includes('not found'))
           || (err.data && err.data.includes('not found'))
       ) reject(new Error('No items were found for the specified id'));
-
-      reject(err);
+      else reject(err);
     });
 });
 
@@ -56,15 +54,12 @@ const _fetchGraph = (id, config) => new Promise((resolve, reject) => {
     .get(`${GE_URLS.graph}/${id}.json`, config)
     .then(res => resolve(res.data))
     .catch((err) => {
-      if (!err.response) {
-        reject(new Error('An unknown networking error occurred.'));
-      }
-      if (
+      if (!err.response) reject(new Error('An unknown networking error occurred.'));
+      else if (
         (err.response.data && err.response.data.includes('not found'))
           || (err.data && err.data.includes('not found'))
       ) reject(new Error('No items were found for the specified id'));
-
-      reject(err);
+      else reject(err);
     });
 });
 
