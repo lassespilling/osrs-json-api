@@ -22,9 +22,9 @@ const _csvToArray = (csv) => {
  * @param {string} rsn Player's RuneScape Name
  * @param {string} gamemode Player's game mode
  */
-const _fetchPlayerCSV = (rsn, gamemode) => new Promise((resolve, reject) => {
+const _fetchPlayerCSV = (rsn, gamemode, config) => new Promise((resolve, reject) => {
   axios
-    .get(`${HISCORES_URLS[gamemode]}/index_lite.ws?player=${rsn}`)
+    .get(`${HISCORES_URLS[gamemode]}/index_lite.ws?player=${rsn}`, config)
     .then((res) => {
       const regex = /[^0-9-,\s]/gm;
       const found = regex.exec(res.data);
@@ -170,7 +170,7 @@ const _parseStats = (stats) => {
  * @param {string} rsn Player's RuneScape Name
  * @param {'main' | 'iron' |'uim' |'hcim' | 'dmm' | 'sdmm' | 'dmmt'} gamemode Player's game mode
  */
-const getPlayer = async (rsn, gamemode = 'main') => {
+const getPlayer = async (rsn, gamemode = 'main', config = undefined) => {
   if (!rsn || typeof rsn !== 'string') throw new Error('RSN must be of type string');
   else if (rsn.length > 12) throw new Error('RSN must be less or equal to 12 characters');
 
@@ -178,7 +178,7 @@ const getPlayer = async (rsn, gamemode = 'main') => {
   if (!Object.keys(HISCORES_URLS).includes(gamemode)) throw new Error('Invalid game mode');
 
   try {
-    const csv = await _fetchPlayerCSV(rsn, gamemode);
+    const csv = await _fetchPlayerCSV(rsn, gamemode, config);
 
     return _parseStats(_csvToArray(csv));
   } catch (error) {

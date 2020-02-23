@@ -7,9 +7,9 @@ const { GE_URLS } = require('./constants');
  * @access private
  * @param {number} id Item's id
  */
-const _fetchItem = id => new Promise((resolve, reject) => {
+const _fetchItem = (id, config) => new Promise((resolve, reject) => {
   axios
-    .get(`${GE_URLS.detail}?item=${id}`)
+    .get(`${GE_URLS.detail}?item=${id}`, config)
     .then((res) => {
       const regex = /[^0-9-,\s]/gm;
       const found = regex.exec(res.data);
@@ -37,10 +37,10 @@ const _fetchItem = id => new Promise((resolve, reject) => {
  * @access public
  * @param {number} id Item's id
  */
-const getItem = async (id) => {
+const getItem = async (id, config = undefined) => {
   if (typeof id !== 'number' || id <= 0) throw new Error('Invalid item id');
 
-  return _fetchItem(id);
+  return _fetchItem(id, config);
 };
 
 /**
@@ -49,9 +49,9 @@ const getItem = async (id) => {
  * @access private
  * @param {number} id Item's id
  */
-const _fetchGraph = id => new Promise((resolve, reject) => {
+const _fetchGraph = (id, config) => new Promise((resolve, reject) => {
   axios
-    .get(`${GE_URLS.graph}/${id}.json`)
+    .get(`${GE_URLS.graph}/${id}.json`, config)
     .then(res => resolve(res.data))
     .catch((err) => {
       if (!err.response) reject(new Error('An unknown networking error occurred.'));
@@ -69,10 +69,10 @@ const _fetchGraph = id => new Promise((resolve, reject) => {
  * @access public
  * @param {number} id Item's id
  */
-const getGraph = (id) => {
+const getGraph = (id, config = undefined) => {
   if (typeof id !== 'number' || id <= 0) throw new Error('Invalid item id');
 
-  return _fetchGraph(id);
+  return _fetchGraph(id, config);
 };
 
 module.exports = { getItem, getGraph };
