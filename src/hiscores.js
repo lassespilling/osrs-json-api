@@ -41,7 +41,7 @@ const _fetchPlayerCSV = (rsn, gamemode, config) => new Promise((resolve, reject)
       else if (
         (err.response.data && err.response.data.includes('not found'))
           || (err.data && err.data.includes('not found'))
-      ) reject(new Error('No items were found for the specified id'));
+      ) reject(new Error('Player not found! Check RSN or game mode.'));
       else reject(err);
     });
 });
