@@ -11,14 +11,6 @@ const _fetchItem = (id, config) => new Promise((resolve, reject) => {
   axios
     .get(`${GE_URLS.detail}?item=${id}`, config)
     .then((res) => {
-      const regex = /[^0-9-,\s]/gm;
-      const found = regex.exec(res.data);
-
-      if (found) {
-        reject(new Error('OSRS API appears to be down.'));
-        return;
-      }
-
       resolve(res.data);
     })
     .catch((err) => {
